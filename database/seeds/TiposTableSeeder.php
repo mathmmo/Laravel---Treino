@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class DatabaseSeeder extends Seeder
+class TiposTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,9 +11,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call([
-            /* UsersTableSeeder::class, */
-            TiposTableSeeder::class
+        DB::table('tipos')->insert([
+            'name' => 'Almoço',
         ]);
+
+        factory(App\Tipo::class, 5)->create();
     }
 }
