@@ -23,15 +23,11 @@ class CreateUsersTable extends Migration
 			$table->string('email', 80);
 			$table->string('password', 254);
 			//Permission
-			$table->string('permission')->default('app.user'));
+			$table->string('permission')->default('app.user');
 			//Token
 			$table->rememberToken();
 			$table->timestamps();
 			$table->softDeletes();
-
-			created_at
-			updated_at
-			deleted_at
 		});
 	}
 

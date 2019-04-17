@@ -17,8 +17,12 @@ class CreateRequestsTable extends Migration
 	{
 		Schema::create('requests', function(Blueprint $table) {
             $table->increments('id');
-
-            $table->timestamps();
+			//request information
+			$table->interger('user_id')->unsined();
+			$table->string('status', 20);
+			$table->timestamps();
+			//foreign key
+			$table->foreign('user_id')->references('id')->on('users');
 		});
 	}
 
@@ -29,6 +33,9 @@ class CreateRequestsTable extends Migration
 	 */
 	public function down()
 	{
+		Schema::table('', function (Blueprint $table){
+			$table->dropForeign('request_userid_foreign');
+		});
 		Schema::drop('requests');
 	}
 }

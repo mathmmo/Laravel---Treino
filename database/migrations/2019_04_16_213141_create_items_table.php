@@ -17,8 +17,17 @@ class CreateItemsTable extends Migration
 	{
 		Schema::create('items', function(Blueprint $table) {
             $table->increments('id');
+			//request information
+			$table->interger('request_id')->unsined();
+			$table->interger('type_id' )->unsined();
+			$table->float('value');
+			$table->date('use_date');
+			
+			$table->timestamps();
 
-            $table->timestamps();
+			//foreign key
+			$table->foreign('request_id')->references('id')->on('requests');
+            $table->foreign('type_id')->references('id')->on('types');
 		});
 	}
 
@@ -29,6 +38,10 @@ class CreateItemsTable extends Migration
 	 */
 	public function down()
 	{
+		Schema::table('', function (Blueprint $table){
+			$table->dropForeign('items_request_id_foreign');
+			$table->dropForeign('items_type_id_foreign');
+		});
 		Schema::drop('items');
 	}
 }

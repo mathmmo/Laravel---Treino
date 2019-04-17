@@ -1,0 +1,87 @@
+*{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    outline: none;
+    border: none;
+
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+           -box-sizing: border-box; 
+}
+/* stylesheet to login pages */
+
+div.background{
+    position: absolute;
+    left:0;
+    width: calc(100% - 350px);
+    height: 100%;
+    background: url('../assets/images/Fluxo-de-caixa1-e1491591577705.jpg');
+    background-size: cover;
+}
+
+section#view-content{
+    float: right;
+    position: absolute;
+    right: 0;
+    width: 350px;
+    height: 100%;
+    background: #013243;
+}
+
+section#view-content h1{
+    margin-left: 20px;
+    margin-top: 90px;
+    float: left;
+    width: 90%;
+    color: #a3d0e6;
+    font: 3em 'Fredoka One', cursive;
+} 
+
+section#view-content h3{
+    margin-top: -10px;
+    margin-left: 20px;
+    float: left;
+    width: 90%;
+    color: #a3d0e6;
+    font: .95em 'Fredoka One', cursive;
+}
+
+section#view-content form{
+    margin-left: 20px;
+}
+
+section#view-content form, form label{
+    float: left;
+    width: 330px;
+    margin-bottom: 10px;
+}
+
+section#view-content form p{
+    margin-top: 30px;
+    margin-bottom: 10px;
+    float: left;
+    width: 100%;
+    color: #a3d0e6;
+    font: 1em 'Arial';
+}
+
+section#view-content form label input{
+    float: left;
+    width: 90%;
+    height: 40px;
+    padding: 0 20px;
+    border-radius: 20px;
+}
+
+.btn{
+    background-color: #a3d0e6;
+    color: #013243;
+    text-align: center;
+    font: .95em 'Fredoka One', cursive;
+    border-radius: 20px;
+    float: right;
+    width: 50%;
+    height: 40px;
+    margin-right: 35px;
+}
