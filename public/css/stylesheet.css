@@ -9,6 +9,10 @@
        -moz-box-sizing: border-box;
            -box-sizing: border-box; 
 }
+
+body{
+	background: #f7f7f7;
+}
 /* stylesheet to login pages */
 
 div.background{
@@ -84,4 +88,42 @@ section#view-content form label input{
     width: 50%;
     height: 40px;
     margin-right: 35px;
+}
+
+/* navbar left styles */
+#navbar-left-screen{
+	position: fixed;
+	float: left;
+	width: 220px;
+	height: 100%;
+	background: #fff;
+	z-index: 5;
+	border-right: 1px solid #e9e9e9;
+	box-shadow: 0 0 15px rgba(0,0,0,.15);
+}
+#navbar-left-screen ul,
+#navbar-left-screen ul li{
+	float: left;
+	width: 100%;
+}
+#navbar-left-screen ul li{
+
+}
+#navbar-left-screen ul li a{
+	float: left;
+    width: 100%;
+    font-size: 2em;
+    text-decoration: none;
+    color: #013243;
+}
+#navbar-left-screen ul li a h3{
+	float: left;
+	font: 1em 'Arial', cursive;
+    color: inherit;
+    text-align: center;
+    width: 100%;
+}
+#navbar-left-screen ul li a:hover{
+    color: #a3d0e6;
+    background-color: #013243;
 }

@@ -52,12 +52,10 @@ class UsersController extends Controller
         $users = $this->repository->all();
 
         if (request()->wantsJson()) {
-
             return response()->json([
                 'data' => $users,
             ]);
         }
-
         return view('users.index', compact('users'));
     }
 
