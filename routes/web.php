@@ -16,4 +16,4 @@ Auth::routes();
 Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('/login', ['uses' => 'Controller@login']);
-Route::get('/login', ['as' => 'user.login', 'uses' => 'Controller@login']);
+Route::get('/login', ['as' => 'user.login', 'uses' => 'DashboardController@auth']);
