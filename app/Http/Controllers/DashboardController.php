@@ -20,7 +20,7 @@ class DashboardController extends Controller
     }
 
     public function index(){
-        echo "Estamos na Index :)";
+        echo "Estamos na Index(dashboard) :)";
     }
 
     public function auth(Request $request){
@@ -28,13 +28,11 @@ class DashboardController extends Controller
             'email' => $request->get('username'),
             'password' => $request->get('password')
         ];
-        
         try {
             Auth::attempt($data, true);
             return redirect()->route('user.dashboard');
         } catch (Exception $e) {
             return $e->getMessage();
         }
-        
     }
 }

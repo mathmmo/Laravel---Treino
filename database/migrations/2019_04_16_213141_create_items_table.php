@@ -18,8 +18,8 @@ class CreateItemsTable extends Migration
 		Schema::create('items', function(Blueprint $table) {
             $table->increments('id');
 			//request information
-			$table->interger('request_id')->unsined();
-			$table->interger('type_id' )->unsined();
+			$table->integer('request_id')->unsined();
+			$table->integer('type_id' )->unsined();
 			$table->float('value');
 			$table->date('use_date');
 			

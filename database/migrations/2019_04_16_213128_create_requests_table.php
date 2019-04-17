@@ -18,7 +18,7 @@ class CreateRequestsTable extends Migration
 		Schema::create('requests', function(Blueprint $table) {
             $table->increments('id');
 			//request information
-			$table->interger('user_id')->unsined();
+			$table->integer('user_id')->unsined();
 			$table->string('status', 20);
 			$table->timestamps();
 			//foreign key
