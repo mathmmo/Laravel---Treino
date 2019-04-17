@@ -118,7 +118,7 @@ section#view-content form label input{
 }
 #navbar-left-screen ul li a h3{
 	float: left;
-	font: 1em 'Arial', cursive;
+	font: .6em 'Fredoka One', cursive;
     color: inherit;
     text-align: center;
     width: 100%;
@@ -126,4 +126,18 @@ section#view-content form label input{
 #navbar-left-screen ul li a:hover{
     color: #a3d0e6;
     background-color: #013243;
+}
+
+i {
+    font-size: 5em;
+    text-align: center;
+    width: 100%;
+    margin-top: 30px;
+}
+
+.user-name{
+    margin-top: -3px;
+    width: 100%;
+    text-align: center;
+    font-size: 1.5em;
 }

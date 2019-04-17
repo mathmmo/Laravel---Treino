@@ -1,7 +1,8 @@
 <nav id="navbar-left-screen">
     <ul>
+        <li><i class="fas fa-user-astronaut"></i></li>
+        <li><h3 class="user-name">Avatar</h3></li>
         <li><a>
-            <!-- <i class=""></i> -->
             <h3>Funcionarios</h3>
         </a></li>
         <li><a>
