@@ -22,7 +22,9 @@
 <body class="bg-dark"> 
     <div id="app">
         @include('templates.navbar')
-        @yield('content')
+        <div class="view-content">
+            @yield('content')
+        </div>
     </div>
     <!-- Scripts -->
     @yield('javascript')

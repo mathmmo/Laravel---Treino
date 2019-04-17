@@ -48,16 +48,16 @@ class TypesController extends Controller
      */
     public function index()
     {
-/*         $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
-        $types = $this->repository->all();
-
-        if (request()->wantsJson()) {
-
-            return response()->json([
-                'data' => $types,
-            ]);
-        }
- */
+//        $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
+//        $types = $this->repository->all();
+//
+//        if (request()->wantsJson()) {
+//
+//            return response()->json([
+//                'data' => $types,
+//            ]);
+//        }
+// 
         return view('types.index');
     }
 
