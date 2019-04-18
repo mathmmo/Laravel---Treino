@@ -11,6 +11,7 @@ use App\Http\Requests\PendingCreateRequest;
 use App\Http\Requests\PendingUpdateRequest;
 use App\Repositories\PendingRepository;
 use App\Validators\PendingValidator;
+use Gate;
 
 /**
  * Class PendingsController.
@@ -48,16 +49,17 @@ class PendingsController extends Controller
      */
     public function index()
     {
+        if(!Gate::allows('isAdmin')){
+            abort(404,"Desculpe, você não tem acesso a essa área.");
+        };        
         $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
         $pendings = $this->repository->all();
 
         if (request()->wantsJson()) {
-
             return response()->json([
                 'data' => $pendings,
             ]);
         }
-
         return view('pendings.index', compact('pendings'));
     }
 

@@ -14,9 +14,12 @@
         <li><a href="{{ route('type.index')}}">
             <h3>Cadastro de Tipos</h3>
         </a></li>
+        <li><a href="{{ route('request.index')}}">
+            <h3>Requisições de Reembolso</h3>
+        </a></li>
         @endcan
     </ul>
-    <ul class="logout-btn">
+    <!-- <ul class="logout-btn">
         <li>
             <a href="{{ route('logout') }}"
                 onclick="event.preventDefault();
@@ -28,5 +31,5 @@
                 {{ csrf_field() }}
             </form>
         </li>
-    </ul>
+    </ul> -->
 </nav>

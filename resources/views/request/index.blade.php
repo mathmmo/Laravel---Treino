@@ -1,11 +1,17 @@
 @extends('templates.master')
 
+@section('stylecss')
+@endsection
+
+@section('javascript')
+@endsection
+
 @section('content')
     <body>
         <div class="dashboard">
             <div class="content">
                 <div class="title m-b-md">
-                    Bem vindo {{ Auth::user()->name }}!
+                    Okay Okay
                 </div>
             </div>
         </div>

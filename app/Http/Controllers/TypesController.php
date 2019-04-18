@@ -49,20 +49,16 @@ class TypesController extends Controller
      */
     public function index()
     {
-//        $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
-//        $types = $this->repository->all();
-//
-//        if (request()->wantsJson()) {
-//
-//            return response()->json([
-//                'data' => $types,
-//            ]);
-//        }
-//  
         if(!Gate::allows('isUser')){
             abort(404,"Desculpe, você não tem acesso a essa área.");
         };
+        $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
         $types = $this->repository->all();
+        if (request()->wantsJson()) {
+            return response()->json([
+                'data' => $types,
+            ]);
+        }
         return view('type.index', compact('types'));
     }
 

@@ -11,6 +11,7 @@ use App\Http\Requests\AprovedCreateRequest;
 use App\Http\Requests\AprovedUpdateRequest;
 use App\Repositories\AprovedRepository;
 use App\Validators\AprovedValidator;
+use Gate;
 
 /**
  * Class AprovedsController.
@@ -48,6 +49,9 @@ class AprovedsController extends Controller
      */
     public function index()
     {
+        if(!Gate::allows('isAdmin')){
+            abort(404,"Desculpe, você não tem acesso a essa área.");
+        };
         $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
         $aproveds = $this->repository->all();
 

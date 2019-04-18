@@ -11,6 +11,7 @@ use App\Http\Requests\RequestCreateRequest;
 use App\Http\Requests\RequestUpdateRequest;
 use App\Repositories\RequestRepository;
 use App\Validators\RequestValidator;
+use Gate;
 
 /**
  * Class RequestsController.
@@ -46,6 +47,20 @@ class RequestsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function index()
+    {
+        $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
+        $requests = $this->repository->all();
+
+        if (request()->wantsJson()) {
+            return response()->json([
+                'data' => $requests,
+            ]);
+        }
+
+        return view('request.index', compact('requests'));
+    }
+
     public function pending()
     {
         $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
@@ -62,7 +77,10 @@ class RequestsController extends Controller
 
     public function aproved()
     {
-/*         $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
+        if(!Gate::allows('isUser')){
+            abort(404,"Desculpe, você não tem acesso a essa área.");
+        };
+        $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
         $requests = $this->repository->all();
 
         if (request()->wantsJson()) {
@@ -70,12 +88,7 @@ class RequestsController extends Controller
                 'data' => $requests,
             ]);
         }
-
-        return view('aproved.index', compact('requests')); */
-        $requests = $this->repository->all();
-        return view('aproved.index', [
-            'request' =>$requests
-        ]);
+        return view('aproved.index', compact('requests'));
     }
 
     /**
