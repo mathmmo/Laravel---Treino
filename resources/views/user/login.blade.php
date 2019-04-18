@@ -18,8 +18,8 @@
             <h1>Reembolsapp</h1>
             <h3>Nosso gerenciador de reembolsos</h3>
 
-            {!! Form::open(['route'=>'user.login', 'method'=>'post']) !!}
-
+            {!! Form::open(['route'=>'login', 'method'=>'post']) !!}
+            {{ csrf_field() }}
             <p>Realize o login</p>
 
             <label>
