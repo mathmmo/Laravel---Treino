@@ -17,5 +17,7 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('/', ['uses' => 'Controller@login']);
 Route::post('/login', ['as' => 'user.login', 'uses' => 'DashboardController@auth']);
 Route::get('/dashboard', ['as' => 'user.dashboard', 'uses' => 'DashboardController@index']);
-
+Route::get('/types', ['as' => 'type.index', 'uses' => 'TypesController@index']);
+Route::get('/pending', ['as' => 'pending.index', 'uses' => 'RequestsController@pending']);
+Route::get('/aproved', ['as' => 'aproved.index', 'uses' => 'RequestsController@aproved']);
 Route::resource('user', 'UsersControler');

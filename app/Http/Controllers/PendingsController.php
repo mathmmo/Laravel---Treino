@@ -7,35 +7,35 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Prettus\Validator\Contracts\ValidatorInterface;
 use Prettus\Validator\Exceptions\ValidatorException;
-use App\Http\Requests\RequestCreateRequest;
-use App\Http\Requests\RequestUpdateRequest;
-use App\Repositories\RequestRepository;
-use App\Validators\RequestValidator;
+use App\Http\Requests\PendingCreateRequest;
+use App\Http\Requests\PendingUpdateRequest;
+use App\Repositories\PendingRepository;
+use App\Validators\PendingValidator;
 
 /**
- * Class RequestsController.
+ * Class PendingsController.
  *
  * @package namespace App\Http\Controllers;
  */
-class RequestsController extends Controller
+class PendingsController extends Controller
 {
     /**
-     * @var RequestRepository
+     * @var PendingRepository
      */
     protected $repository;
 
     /**
-     * @var RequestValidator
+     * @var PendingValidator
      */
     protected $validator;
 
     /**
-     * RequestsController constructor.
+     * PendingsController constructor.
      *
-     * @param RequestRepository $repository
-     * @param RequestValidator $validator
+     * @param PendingRepository $repository
+     * @param PendingValidator $validator
      */
-    public function __construct(RequestRepository $repository, RequestValidator $validator)
+    public function __construct(PendingRepository $repository, PendingValidator $validator)
     {
         $this->repository = $repository;
         $this->validator  = $validator;
@@ -46,58 +46,41 @@ class RequestsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function pending()
+    public function index()
     {
         $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
-        $requests = $this->repository->all();
+        $pendings = $this->repository->all();
 
         if (request()->wantsJson()) {
+
             return response()->json([
-                'data' => $requests,
+                'data' => $pendings,
             ]);
         }
 
-        return view('pending.index', compact('requests'));
-    }
-
-    public function aproved()
-    {
-/*         $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
-        $requests = $this->repository->all();
-
-        if (request()->wantsJson()) {
-            return response()->json([
-                'data' => $requests,
-            ]);
-        }
-
-        return view('aproved.index', compact('requests')); */
-        $requests = $this->repository->all();
-        return view('aproved.index', [
-            'request' =>$requests
-        ]);
+        return view('pendings.index', compact('pendings'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  RequestCreateRequest $request
+     * @param  PendingCreateRequest $request
      *
      * @return \Illuminate\Http\Response
      *
      * @throws \Prettus\Validator\Exceptions\ValidatorException
      */
-    public function store(RequestCreateRequest $request)
+    public function store(PendingCreateRequest $request)
     {
         try {
 
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
 
-            $request = $this->repository->create($request->all());
+            $pending = $this->repository->create($request->all());
 
             $response = [
-                'message' => 'Request created.',
-                'data'    => $request->toArray(),
+                'message' => 'Pending created.',
+                'data'    => $pending->toArray(),
             ];
 
             if ($request->wantsJson()) {
@@ -127,16 +110,16 @@ class RequestsController extends Controller
      */
     public function show($id)
     {
-        $request = $this->repository->find($id);
+        $pending = $this->repository->find($id);
 
         if (request()->wantsJson()) {
 
             return response()->json([
-                'data' => $request,
+                'data' => $pending,
             ]);
         }
 
-        return view('requests.show', compact('request'));
+        return view('pendings.show', compact('pending'));
     }
 
     /**
@@ -148,32 +131,32 @@ class RequestsController extends Controller
      */
     public function edit($id)
     {
-        $request = $this->repository->find($id);
+        $pending = $this->repository->find($id);
 
-        return view('requests.edit', compact('request'));
+        return view('pendings.edit', compact('pending'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  RequestUpdateRequest $request
+     * @param  PendingUpdateRequest $request
      * @param  string            $id
      *
      * @return Response
      *
      * @throws \Prettus\Validator\Exceptions\ValidatorException
      */
-    public function update(RequestUpdateRequest $request, $id)
+    public function update(PendingUpdateRequest $request, $id)
     {
         try {
 
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_UPDATE);
 
-            $request = $this->repository->update($request->all(), $id);
+            $pending = $this->repository->update($request->all(), $id);
 
             $response = [
-                'message' => 'Request updated.',
-                'data'    => $request->toArray(),
+                'message' => 'Pending updated.',
+                'data'    => $pending->toArray(),
             ];
 
             if ($request->wantsJson()) {
@@ -211,11 +194,11 @@ class RequestsController extends Controller
         if (request()->wantsJson()) {
 
             return response()->json([
-                'message' => 'Request deleted.',
+                'message' => 'Pending deleted.',
                 'deleted' => $deleted,
             ]);
         }
 
-        return redirect()->back()->with('message', 'Request deleted.');
+        return redirect()->back()->with('message', 'Pending deleted.');
     }
 }

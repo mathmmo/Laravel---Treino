@@ -23,7 +23,6 @@ class DashboardController extends Controller
         return view('user.dashboard');
     }
 
-
     public function auth(Request $request)
     {
         $data = [
@@ -54,5 +53,9 @@ class DashboardController extends Controller
         {
             return $e->getMessage();
         }
+    }
+
+    public function types(){
+        return view('user.types');
     }
 }

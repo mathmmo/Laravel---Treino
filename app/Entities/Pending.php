@@ -7,11 +7,11 @@ use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
 
 /**
- * Class Request.
+ * Class Pending.
  *
  * @package namespace App\Entities;
  */
-class Request extends Model implements Transformable
+class Pending extends Model implements Transformable
 {
     use TransformableTrait;
 
@@ -23,5 +23,3 @@ class Request extends Model implements Transformable
     protected $fillable = [];
 
 }
-
-

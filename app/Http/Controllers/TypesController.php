@@ -11,6 +11,7 @@ use App\Http\Requests\TypeCreateRequest;
 use App\Http\Requests\TypeUpdateRequest;
 use App\Repositories\TypeRepository;
 use App\Validators\TypeValidator;
+use Gate;
 
 /**
  * Class TypesController.
@@ -57,8 +58,12 @@ class TypesController extends Controller
 //                'data' => $types,
 //            ]);
 //        }
-// 
-        return view('types.index');
+//  
+        if(!Gate::allows('isUser')){
+            abort(404,"Desculpe, você não tem acesso a essa área.");
+        };
+        $types = $this->repository->all();
+        return view('type.index', compact('types'));
     }
 
     /**

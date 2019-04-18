@@ -7,35 +7,35 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Prettus\Validator\Contracts\ValidatorInterface;
 use Prettus\Validator\Exceptions\ValidatorException;
-use App\Http\Requests\RequestCreateRequest;
-use App\Http\Requests\RequestUpdateRequest;
-use App\Repositories\RequestRepository;
-use App\Validators\RequestValidator;
+use App\Http\Requests\AprovedCreateRequest;
+use App\Http\Requests\AprovedUpdateRequest;
+use App\Repositories\AprovedRepository;
+use App\Validators\AprovedValidator;
 
 /**
- * Class RequestsController.
+ * Class AprovedsController.
  *
  * @package namespace App\Http\Controllers;
  */
-class RequestsController extends Controller
+class AprovedsController extends Controller
 {
     /**
-     * @var RequestRepository
+     * @var AprovedRepository
      */
     protected $repository;
 
     /**
-     * @var RequestValidator
+     * @var AprovedValidator
      */
     protected $validator;
 
     /**
-     * RequestsController constructor.
+     * AprovedsController constructor.
      *
-     * @param RequestRepository $repository
-     * @param RequestValidator $validator
+     * @param AprovedRepository $repository
+     * @param AprovedValidator $validator
      */
-    public function __construct(RequestRepository $repository, RequestValidator $validator)
+    public function __construct(AprovedRepository $repository, AprovedValidator $validator)
     {
         $this->repository = $repository;
         $this->validator  = $validator;
@@ -46,58 +46,41 @@ class RequestsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function pending()
+    public function index()
     {
         $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
-        $requests = $this->repository->all();
+        $aproveds = $this->repository->all();
 
         if (request()->wantsJson()) {
+
             return response()->json([
-                'data' => $requests,
+                'data' => $aproveds,
             ]);
         }
 
-        return view('pending.index', compact('requests'));
-    }
-
-    public function aproved()
-    {
-/*         $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
-        $requests = $this->repository->all();
-
-        if (request()->wantsJson()) {
-            return response()->json([
-                'data' => $requests,
-            ]);
-        }
-
-        return view('aproved.index', compact('requests')); */
-        $requests = $this->repository->all();
-        return view('aproved.index', [
-            'request' =>$requests
-        ]);
+        return view('aproved.index', compact('aproveds'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  RequestCreateRequest $request
+     * @param  AprovedCreateRequest $request
      *
      * @return \Illuminate\Http\Response
      *
      * @throws \Prettus\Validator\Exceptions\ValidatorException
      */
-    public function store(RequestCreateRequest $request)
+    public function store(AprovedCreateRequest $request)
     {
         try {
 
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
 
-            $request = $this->repository->create($request->all());
+            $aproved = $this->repository->create($request->all());
 
             $response = [
-                'message' => 'Request created.',
-                'data'    => $request->toArray(),
+                'message' => 'Aproved created.',
+                'data'    => $aproved->toArray(),
             ];
 
             if ($request->wantsJson()) {
@@ -127,16 +110,16 @@ class RequestsController extends Controller
      */
     public function show($id)
     {
-        $request = $this->repository->find($id);
+        $aproved = $this->repository->find($id);
 
         if (request()->wantsJson()) {
 
             return response()->json([
-                'data' => $request,
+                'data' => $aproved,
             ]);
         }
 
-        return view('requests.show', compact('request'));
+        return view('aproveds.show', compact('aproved'));
     }
 
     /**
@@ -148,32 +131,32 @@ class RequestsController extends Controller
      */
     public function edit($id)
     {
-        $request = $this->repository->find($id);
+        $aproved = $this->repository->find($id);
 
-        return view('requests.edit', compact('request'));
+        return view('aproveds.edit', compact('aproved'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  RequestUpdateRequest $request
+     * @param  AprovedUpdateRequest $request
      * @param  string            $id
      *
      * @return Response
      *
      * @throws \Prettus\Validator\Exceptions\ValidatorException
      */
-    public function update(RequestUpdateRequest $request, $id)
+    public function update(AprovedUpdateRequest $request, $id)
     {
         try {
 
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_UPDATE);
 
-            $request = $this->repository->update($request->all(), $id);
+            $aproved = $this->repository->update($request->all(), $id);
 
             $response = [
-                'message' => 'Request updated.',
-                'data'    => $request->toArray(),
+                'message' => 'Aproved updated.',
+                'data'    => $aproved->toArray(),
             ];
 
             if ($request->wantsJson()) {
@@ -211,11 +194,11 @@ class RequestsController extends Controller
         if (request()->wantsJson()) {
 
             return response()->json([
-                'message' => 'Request deleted.',
+                'message' => 'Aproved deleted.',
                 'deleted' => $deleted,
             ]);
         }
 
-        return redirect()->back()->with('message', 'Request deleted.');
+        return redirect()->back()->with('message', 'Aproved deleted.');
     }
 }
