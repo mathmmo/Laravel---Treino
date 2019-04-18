@@ -106,9 +106,6 @@ section#view-content form label input{
 	float: left;
 	width: 100%;
 }
-#navbar-left-screen ul li{
-
-}
 #navbar-left-screen ul li a{
 	float: left;
     width: 100%;
@@ -143,7 +140,7 @@ i {
 }
 
 /* View content */
-#view-content{
+.view-content{
 	position: fixed;
 	float: left;
 	width: 100%;
@@ -214,4 +211,44 @@ form.form-default label.submit input{
 }
 .default-table tbody tr{
 	height: 20px;
+}
+
+/* User index page */
+.dashboard {
+    margin-top: 25%;
+    color: #82949c;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 100;
+}
+
+.full-height {
+    height: 100vh;
+}
+
+.flex-center {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.position-ref {
+    position: relative;
+}
+
+.top-right {
+    position: absolute;
+    right: 10px;
+    top: 18px;
+}
+
+.content {
+    text-align: center;
+}
+
+.title {
+    font-size: 84px;
+}
+
+.m-b-md {
+    margin-bottom: 30px;
 }

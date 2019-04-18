@@ -56,7 +56,10 @@ class UsersController extends Controller
                 'data' => $users,
             ]);
         } */
-        return view('users.index');
+        $users = $this->repository->all();
+        return view('user.index', [
+			'users' => $users
+		]);
     }
 
     /**

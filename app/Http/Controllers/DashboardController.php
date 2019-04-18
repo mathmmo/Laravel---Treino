@@ -23,15 +23,35 @@ class DashboardController extends Controller
         return view('user.dashboard');
     }
 
-    public function auth(Request $request){
+
+    public function auth(Request $request)
+    {
         $data = [
-            'email' => $request->get('username'),
-            'password' => $request->get('password')
+            'email'     => $request->get('username'),
+            'password'  => $request->get('password')
         ];
-        try {
-            Auth::attempt($data, true);
-            return redirect()->route('user.dashboard');
-        } catch (Exception $e) {
+
+        try
+        {
+			if(env('PASSWORD_HASH'))
+			{
+				Auth::attempt($data, false);
+			}
+			else
+			{
+				$user = $this->repository->findWhere(['email' => $request->get('username')])->first();
+				
+				if(!$user)
+					throw new Exception("Informações de login invalidas");
+				if($user->password != $request->get('password'))
+					throw new Exception("Informações de login invalidas");
+				Auth::login($user);
+			}
+
+			return redirect()->route('user.dashboard');
+        }
+        catch (Exception $e)
+        {
             return $e->getMessage();
         }
     }

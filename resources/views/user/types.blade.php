@@ -11,7 +11,7 @@
         <div class="dashboard">
             <div class="content">
                 <div class="title m-b-md">
-                    Bem vindo!
+                    Cadastro de Tipos
                 </div>
             </div>
         </div>
